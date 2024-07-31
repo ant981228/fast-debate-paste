@@ -1,8 +1,8 @@
-# Window Switcher and Text Processor (v1.2)
+# Fast Debate Paste (v1.2)
 
 ## Overview
 
-This utility provides a convenient way to copy text from one window, process it according to specific patterns, and paste it into a pre-selected target window. It's particularly useful for repetitive tasks that involve transferring and formatting text between different applications.
+This utility provides a convenient way to copy text from one window, process it, and paste it into a card processing document.
 
 ## Features
 
