@@ -1,4 +1,4 @@
-# Window Switcher and Text Processor (v3.2)
+# Window Switcher and Text Processor (v1.2)
 
 ## Overview
 
