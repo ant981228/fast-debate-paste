@@ -55,8 +55,8 @@ The program uses two main hotkeys:
 
 When using Zotero with Zutilo configured:
 
-1. Select the Zotero items you want to copy.
-3. Press `Ctrl+Shift+C` to perform the Zotero Quick Copy function and paste it to your target window. The program will not switch back to Zotero after pasting.
+1. Select the Zotero items you want to copy. Ensure that Zotero is your active window. 
+2. Press `Ctrl+Shift+C` to perform the Zotero Quick Copy function and paste it to your target window. The program will not switch back to Zotero after pasting.
 
 ### Changing the Target Window
 
