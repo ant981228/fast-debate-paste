@@ -28,7 +28,7 @@ If you are using Zotero for managing debate cards and wish to automate the proce
 2. **Configure QuickCopy in Zutilo**: After installing Zutilo, open Zotero and go to the Zutilo preferences. Configure "QuickCopy items" to be activated with the `Ctrl + 0` hotkey.
 3. **Set QuickCopy Output in Zotero Preferences**: 
    - Go to Zotero preferences and navigate to `Advanced -> Config Editor`.
-   - Change the value of `extensions.zotero.export.quickCopy.setting` to match the output format you want to copy. For example, if you're using a custom Zotero style for policy debate, you might set the value to something like `bibliography=http://www.zotero.org/styles/policy-debate-v3`.
+   - Change the value of `extensions.zotero.export.quickCopy.setting` to match the output format you want to copy. If you're using Truf's custom Zotero style for policy debate, you would set the value to `bibliography=http://www.zotero.org/styles/policy-debate-v3`. Otherwise, you can find the URL by going to Zotero Preferences, selecting your preferred style, choosing Style Editor, and finding the url in the <id> field. Your value would then be `bibliography=yourIdFieldValue`. 
 
 ## Usage
 
