@@ -1,24 +1,25 @@
-# Fast Debate Paste (v1.3)
+# Fast Debate Paste (v1.4)
 
 ## Overview
 
-This utility provides a convenient way to copy text from one window, process it, and paste it into a card processing document. It is optimized for quick copying and text transformation, making it especially useful for debate preparation.
+This utility copies text from a source window and pastes it into a card processing document. 
 
 ## Features
 
 1. Persistent target window selection
-2. Text processing for specific patterns, including abbreviated words
-3. Hotkeys for quick operation
-4. Error handling for unavailable windows and clipboard operations
-5. Improved timing and reliability for text processing operations
-6. Retry mechanism for more consistent regex matching
-7. Enhanced support for Zotero, including automatic text copying using the Zutilo extension
+2. Text processing for specific patterns, including figure/table/equation omissions
+3. Customizable hotkeys via INI file
+4. Toggle emphasis style for omissions (useful if you want to prevent your omissions from being shrunk)
+5. An undo function
+6. Built-in help dialogue
+7. In Zotero, quick copying for debate citations
 
 ## Installation
 
 1. Download the executable file.
 2. Place the file in a convenient location on your computer.
 3. Run the executable to start the program.
+4. On first run, the program will create a Hotkeys.ini file in the same directory.
 
 ### Zotero and Zutilo Setup (Optional)
 
@@ -34,22 +35,32 @@ If you are using Zotero for managing debate cards and wish to automate the proce
 
 ### Initial Setup
 
-When you run the program for the first time, it will prompt you to select a target window. This is the window where the processed text will be pasted.
+When you run the program for the first time, it will create a Hotkeys.ini file with default settings and prompt you to select a target window.
 
-### Hotkeys
+### Default Hotkeys
 
-The program uses two main hotkeys:
+The program uses the following default hotkeys:
 
 1. `Ctrl+Shift+W`: Opens a window selection dialog to change the target window.
 2. `Ctrl+Shift+C`: Performs the copy-process-paste operation.
+3. `Ctrl+Shift+Z`: Performs the undo operation.
+4. `Ctrl+Shift+H`: Displays the help dialogue.
+
+### Customizing Hotkeys and Settings
+
+You can customize hotkeys and settings by editing the Hotkeys.ini file:
+
+1. Open the Hotkeys.ini file in a text editor.
+2. Modify the values in the [Hotkeys] section to change hotkey assignments.
+3. In the [Settings] section, set `ApplyF10ToProcessedText=1` to enable the F10 action, or `0` to disable it.
 
 ### Workflow
 
 1. Run the executable.
 2. Select your initial target window from the popup dialog.
 3. Go to the source window and select the text you want to copy and process.
-4. Press `Ctrl+Shift+C`.
-5. The program will copy the selected text, process it if it matches a specific pattern, switch to the target window, paste the processed text, and (if the active window was not Zotero) switch back to the source window.
+4. Press the copy-paste hotkey (default: `Ctrl+Shift+C`).
+5. The program will copy the selected text, process it if it matches specific patterns, switch to the target window, paste the processed text, and (if the active window was not Zotero) switch back to the source window.
 
 ### Zotero Workflow
 
@@ -62,28 +73,36 @@ When using Zotero with Zutilo configured:
 
 If you need to change the target window at any time:
 
-1. Press `Ctrl+Shift+W`.
+1. Press the change target window hotkey (default: `Ctrl+Shift+W`).
 2. Select the new target window from the popup dialog.
 3. Click OK.
 
-## Text Processing
+### Using the Help Function
 
-The program includes a text processing feature with improved reliability:
+To access the built-in help:
 
+1. Press the help hotkey (default: `Ctrl+Shift+H`).
+2. A dialogue will appear with information about current hotkeys, rebinding instructions, current settings, and function explanations.
+
+## Omissions
+
+The program will attempt to catch and reformat elements you intend to indicate are omitted:
 - If the copied text matches the pattern "WORD NUMBER" or "ABBREVIATED_WORD. NUMBER" (e.g., "Figure 2.1", "Fig. 2.1", or "Table 3.2.1"), it will be transformed to "[WORD NUMBER OMITTED]" or "[ABBREVIATED_WORD. NUMBER OMITTED]" in all caps.
-- The text processing is case-insensitive, so "figure 2.1" and "FIGURE 2.1" will both be processed.
-- If the text doesn't match this pattern, it will be pasted as-is.
-- The program includes a retry mechanism that attempts to process the text multiple times if necessary, improving the consistency of the regex matching.
+- If the copied text is a standalone number (e.g., "3.1" or "2.43.45"), it will be transformed to "[EQUATION X OMITTED]" where X is the original number.
+- The text processing is case-insensitive.
+- If the text doesn't match these patterns, it will be pasted as-is.
 
 ## Error Handling
 
-- If you try to use `Ctrl+Shift+C` without selecting a target window, you'll be prompted to select one.
+- If you try to use the copy-paste hotkey without selecting a target window, you'll be prompted to select one.
 - If the target window is no longer available when you try to paste, you'll be notified and asked to select a new target window.
 - If the program fails to copy text to the clipboard, you'll receive an error message and be asked to try again.
 
 ## Troubleshooting
 
 - If hotkeys don't work, check for conflicts with other applications.
+- If hotkeys are not working as expected, check the Hotkeys.ini file to ensure it's correctly configured.
+- For issues with the F10 action, verify the `ApplyF10ToProcessedText` setting in the Hotkeys.ini file.
 - If text isn't being processed as expected, the program will make multiple attempts to process it. In rare cases where processing still fails, the original text will be pasted unchanged.
 - If you consistently experience issues with text processing, try selecting the text again and re-copying, as this can sometimes resolve clipboard-related issues.
 - Ensure Zutilo is configured correctly and that Zotero is set up to use the correct output format in the `Config Editor`.
@@ -95,44 +114,3 @@ The program includes a text processing feature with improved reliability:
 For support, please contact the program developer or refer to any provided support channels.
 
 Remember to always back up your work and use this utility responsibly.
-
----
-
-# Changelog
-
-## v1.3
-- **Added Zotero Integration**: Supports automatic copying of items in Zotero using the Zutilo extension. Users must configure Zutilo to use `Ctrl + 0` for QuickCopy.
-- **Target Window Switching for Zotero**: The program now recognizes when Zotero is the active window and will not return to Zotero after pasting the processed text.
-- **Documentation Update**: Added instructions for Zotero and Zutilo setup.
-
-## v1.2
-
-#### New Features and Improvements
-
-1. **Enhanced Regex Processing**: Implemented a more robust regex matching system to handle a wider range of text patterns, including abbreviated words (e.g., "Fig." for "Figure").
-
-2. **Retry Mechanism**: Added a retry mechanism for text processing. The program now attempts to process the text multiple times if the initial attempt fails, improving the consistency of regex matching.
-
-3. **Improved Clipboard Handling**: Enhanced the clipboard operations with better timing and error checking to ensure more reliable text copying and pasting.
-
-4. **Separated Text Processing Logic**: Moved text processing into separate functions (`ProcessText` and `ProcessTextWithRetry`) for better code organization and easier maintenance.
-
-5. **Increased Wait Times**: Added and adjusted wait times at crucial points in the script to allow for more reliable window switching and text pasting.
-
-6. **Improved Error Handling**: Enhanced error messages and handling for scenarios such as failed clipboard operations or unavailable target windows.
-
-7. **Case-Insensitive Matching**: The regex pattern is now case-insensitive, allowing it to match text regardless of capitalization.
-
-#### Bug Fixes
-
-1. Fixed potential issues with window activation by implementing a more robust window switching mechanism.
-
-2. Addressed inconsistencies in text processing that could occur due to timing issues.
-
-#### Other Changes
-
-1. Updated the documentation to reflect all new features and changes.
-
-2. Improved code comments for better readability and maintainability.
-
-3. Optimized the overall script structure for better performance and reliability.
