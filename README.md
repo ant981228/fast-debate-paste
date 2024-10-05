@@ -3,7 +3,7 @@
 ## Overview
 Fast Debate Paste is a utility designed to streamline the process of copying text from various sources and pasting it into a card processing document for debate preparation. It offers advanced text processing features, customizable hotkeys, and seamless integration with Zotero.
 
-## New Features in v1.5
+## New Features in v1.6
 - **Copy-Paste Without Line Breaks**: New function to remove line breaks while copying text, ideal for pasting from PDFs with line breaks within paragraphs.
 - **Copy-Paste Without Line Breaks and Return**: A variant that doesn't add a line break before the copied content, useful for paragraphs spanning page breaks.
 - **Clone Last Cite**: Replaced the undo function with a "Clone Last Cite" feature, which goes to the target window and presses Alt + F8 (Verbatim shortcut for cloning the last cite).
